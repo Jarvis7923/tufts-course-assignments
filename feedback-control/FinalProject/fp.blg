@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: fp.aux
+The style file: unsrt.bst
+Database file #1: bib.bib
+Warning--empty year in ref1
+Warning--empty year in ref2
+Warning--empty year in ref3
+You've used 3 entries,
+            1791 wiz_defined-function locations,
+            458 strings with 3762 characters,
+and the built_in function-call counts, 485 in all, are:
+= -- 39
+> -- 12
+< -- 0
++ -- 6
+- -- 3
+* -- 23
+:= -- 78
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 6
+duplicate$ -- 30
+empty$ -- 58
+format.name$ -- 3
+if$ -- 109
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 6
+newline$ -- 18
+num.names$ -- 3
+pop$ -- 21
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 6
+stack$ -- 0
+substring$ -- 0
+swap$ -- 3
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 3
+while$ -- 3
+width$ -- 4
+write$ -- 32
+(There were 3 warnings)

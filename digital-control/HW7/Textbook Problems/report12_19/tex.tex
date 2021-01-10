@@ -1,0 +1,138 @@
+\documentclass[a4paper]{article}
+
+\usepackage{cite}%多个文献引用
+\usepackage{graphicx}
+\usepackage{array}%调节表格行高
+\usepackage{multirow,makecell}%多行表格
+\usepackage{tabularx}%表格固定列宽
+\usepackage{subfigure}
+\usepackage{titlesec}%标题格式设置
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{setspace}%行距包
+\usepackage{siunitx}
+\usepackage{mdwlist}
+\usepackage{tabu}
+\usepackage{enumerate}
+\usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+\geometry{top=1.54cm,bottom=2.54cm,left=2.5cm,right=2.5cm}
+
+
+\begin{document}
+
+\noindent Problem 12-19:
+
+\noindent Solution
+
+{\bf
+\begin{lstlisting}
+clear;clc;close all;
+
+A = [-0.0140         0   -1.4000         0         0;
+      0.0230   -0.0230   -0.0230         0         0;
+      0.1340    0.6700   -0.6700    0.3800    0.003246;
+           0         0    0.0600   -0.0600         0;
+           0         0    0.0017         0   -0.0010   ];
+B = [1,0,0,0,0]';
+C = [1,0,0,0,0];
+D = 0;
+
+% Part A
+Co = ctrb(A,B);
+size_A = size(A);
+if (rank(Co)-size_A(1) >= 0)
+    fprintf("controllable\n");
+else
+    fprintf("not controllable\n");
+end
+P = Co/Co;
+
+% :wPart B
+% at least two ways to calculate the phase variable form
+sys = ss(A,B,C,D);
+sys = canon(sys, 'companion');
+A_phase = sys.A';
+B_phase = zeros(length(A_phase),1);
+B_phase(length(A_phase)) = 1;
+fprintf('A matrix in phase var form');
+A_phase
+fprintf('B matrix in phase var form');
+B_phase
+
+% second way
+[num,den] = ss2tf(A,B,C,D);
+den = den(2:end);
+den = den(end:-1:1);
+A_phase2 = [zeros(length(A)-1,1),eye(length(A)-1)];
+A_phase2 = [A_phase2;-den];
+fprintf('A matrix in phase var form');
+A_phase2
+fprintf('B matrix in phase var form');
+B_phase2 = B_phase
+
+fprintf('The difference between two methods');
+A_phase - A_phase2
+\end{lstlisting}
+}
+
+The out put is :
+{\bf
+\begin{lstlisting}
+controllable
+A matrix in phase var form
+A_phase =
+
+         0    1.0000         0         0         0
+         0         0    1.0000         0         0
+         0         0         0    1.0000         0
+         0         0         0         0    1.0000
+   -0.0000   -0.0016   -0.0394   -0.2485   -0.7680
+
+B matrix in phase var form
+B_phase =
+
+     0
+     0
+     0
+     0
+     1
+
+A matrix in phase var form
+A_phase2 =
+
+         0    1.0000         0         0         0
+         0         0    1.0000         0         0
+         0         0         0    1.0000         0
+         0         0         0         0    1.0000
+   -0.0000   -0.0016   -0.0394   -0.2485   -0.7680
+
+B matrix in phase var form
+B_phase2 =
+
+     0
+     0
+     0
+     0
+     1
+
+The difference between two methods
+ans =
+
+   1.0e-14 *
+
+         0         0         0         0         0
+         0         0         0         0         0
+         0         0         0         0         0
+         0         0         0         0         0
+    0.0007    0.0152    0.0867    0.2470    0.3109
+\end{lstlisting}
+}
+
+
+
+\end{document}
